@@ -4,7 +4,7 @@
  * @Date: 2022-05-09
  */
 import com.aladingziben.devops.FormatPrint
-
+def call(map) {
     pipeline {
         agent any
         options {
@@ -39,3 +39,4 @@ import com.aladingziben.devops.FormatPrint
             }
         }
     }
+}
