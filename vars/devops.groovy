@@ -24,7 +24,7 @@ import com.aladingziben.devops.FormatPrint
                 steps {
                     script {
                         def tools = new FormatPrint()
-                        tools.PrintMes("获取代码",'black')
+                        tools.PrintMes("获取代码",'green')
                         sh "${params.cmd}"
                     }
                 }
