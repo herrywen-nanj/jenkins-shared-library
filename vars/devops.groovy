@@ -33,8 +33,9 @@ def call(map) {
             }
             stage("声明式流水线: 打印现在的时间"){
                 steps {
-                    echo "the input is ${map.id},the msg is ${map.msg}"
-
+                    script {
+                        sh "echo ${map.id} ${map.msg}"
+                    }
                 }
             }
         }
