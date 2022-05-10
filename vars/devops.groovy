@@ -4,7 +4,6 @@
  * @Date: 2022-05-09
  */
 import com.aladingziben.devops.FormatPrint
-def run(params) {
 
     pipeline {
         agent any
@@ -40,4 +39,3 @@ def run(params) {
             }
         }
     }
-}
