@@ -17,7 +17,7 @@ import com.aladingziben.devops.FormatPrint
         stages{
             stage("声明式流水线: 拉一个代码") {
                 steps {
-                    git url: "${params.git_url}"
+                    git url: "${map.git_url}"
                 }
             }
             stage("声明式流水线: 执行一个命令"){
@@ -25,14 +25,14 @@ import com.aladingziben.devops.FormatPrint
                     script {
                         def tools = new FormatPrint()
                         tools.PrintMes("获取代码",'green')
-                        sh "${params.cmd}"
+                        sh "${map.cmd}"
                     }
                 }
             }
             stage("声明式流水线: 打印现在的时间"){
                 steps {
                     script {
-                        inputMsg([id:"${params.input_id}",msg:"${params.input_msg}"])
+                        inputMsg([id:"${map.input_id}",msg:"${map.input_msg}"])
                     }
 
                 }
