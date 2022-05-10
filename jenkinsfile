@@ -1,23 +1,9 @@
 #!groovy
 
-@Library('my-jenkins-shared') _     
-def tools = new com.aladingziben.devops.devops()
-
-
-pipeline {
-    agent { node {  label "master" }}
-
-    stages {
-        //下载代码
-        stage("GetCode"){ 
-            steps{  
-                timeout(time:5, unit:"MINUTES"){   
-                    script{ 
-                        tools.PrintMes("获取代码",'green')
-                        hello.call()
-                    }
-                }
-            }
-        }
-    }
-}
+@Library('my-jenkins-shared') _
+run([
+    git_url:"https://github.com/IceHu1993/jenkinslibrary.git",
+    cmd:"ls -al",
+    input_id: "input1",
+    input_msg: "声明式流水线的input"
+])

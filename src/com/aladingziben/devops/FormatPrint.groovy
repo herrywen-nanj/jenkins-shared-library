@@ -3,7 +3,7 @@
  * @Date: 2022-05-09
  */
 
-package com.aladingziben.devops;
+package com.aladingziben.devops
 
 //格式化输出
 def PrintMes(value,color){
