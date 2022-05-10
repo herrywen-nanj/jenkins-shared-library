@@ -27,7 +27,7 @@ def call(map) {
                         def tools = new FormatPrint()
                         tools.PrintMes("获取代码",'green')
                         */
-                        def tools=new PrintMes()
+                        def tools=new FormatPrint()
                         tools.PrintMes("获取命令内容","green")
                         sh "${map.cmd}"
                     }
