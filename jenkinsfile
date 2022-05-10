@@ -1,11 +1,7 @@
 #!/usr/bin/env groovy
 
-import com.aladingziben.devops
 
 @Library('my-jenkins-shared') _
-run([
-    git_url:"https://github.com/IceHu1993/jenkinslibrary.git",
-    cmd:"ls -al",
-    input_id: "input1",
-    input_msg: "声明式流水线的input"
-])
+def map = [ git_url:"https://gitee.com/herrywen1/codo-cmdb.git", cmd:"ls -al",input_id: "input1",input_msg: "声明式流水线的input"]
+
+devops(map)
