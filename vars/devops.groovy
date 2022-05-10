@@ -23,8 +23,10 @@ def call(map) {
             stage("声明式流水线: 执行一个命令"){
                 steps {
                     script {
+                        /**
                         def tools = new FormatPrint()
                         tools.PrintMes("获取代码",'green')
+                        */
                         sh "${map.cmd}"
                     }
                 }
