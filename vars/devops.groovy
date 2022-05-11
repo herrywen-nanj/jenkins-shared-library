@@ -4,7 +4,7 @@
  * @Date: 2022-05-09
  */
 import com.aladingziben.devops.FormatPrint
-def FormatPrint = new FormatPrint()
+
 
 def call(map) {
     pipeline {
@@ -74,6 +74,7 @@ def call(map) {
                 }
                 steps {
                     script {
+                        def FormatPrint = new FormatPrint()
                         FormatPrint.PrintMes("------ 开始编译 ------","green")
                         if (POINT == 'frontend') {
                             dir("${env.workspace}"){
