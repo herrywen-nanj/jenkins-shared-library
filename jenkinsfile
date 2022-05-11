@@ -2,6 +2,4 @@
 
 
 @Library('my-jenkins-shared') _
-def map = [git_url:"https://gitee.com/herrywen1/codo-cmdb.git", cmd:"ls -al", input_id: "1", input_msg: "this is msg"]
-// def devops = new devops()
-devops.call(map)
+devops.call([GIT_URL:"https://gitee.com/mdald/pre.git", PRE_FIX:"pre-system", POINT: "backend"])
