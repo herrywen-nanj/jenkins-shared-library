@@ -3,6 +3,12 @@
  * @author: herrywen
  * @Date: 2022-05-09
  */
+
+/**
+ * @param GIT_URL, transmit GIT_URL
+ * @param PRE_FIX, Java packaged pre directory,value is Null or Real secondary directory
+ * @param POINT, Used to package points,value is fronted or backend
+ */
 import com.aladingziben.devops.FormatPrint
 
 
