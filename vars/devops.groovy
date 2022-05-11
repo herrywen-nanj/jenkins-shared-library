@@ -4,7 +4,7 @@
  * @Date: 2022-05-09
  */
 import com.aladingziben.devops.FormatPrint
-def call(map) {
+def call(string git_url , string cmd, string input_id,string input_msg) {
     pipeline {
         agent any
         options {
@@ -17,7 +17,7 @@ def call(map) {
         stages{
             stage("声明式流水线: 拉一个代码") {
                 steps {
-                    git url: "${map.git_url}"
+                    git url: "${git_url}"
                 }
             }
             stage("声明式流水线: 执行一个命令"){
@@ -29,14 +29,14 @@ def call(map) {
                         */
                         def tools=new FormatPrint()
                         tools.PrintMes("获取命令内容","green")
-                        sh "${map.cmd}"
+                        sh "${cmd}"
                     }
                 }
             }
             stage("声明式流水线: 打印现在的时间"){
                 steps {    
-                        println "${map.input_id}" 
-                        println "${map.input_msg}"
+                        println "${input_id}"
+                        println "${input_msg}"
                 }
             }
         }
