@@ -27,7 +27,7 @@ def call(map) {
         parameters {
             gitParameter branch: '',
                     branchFilter: 'origin/(.*)',
-                    defaultValue: "${map.BRANCH_NAME}",
+                    defaultValue: 'prv',
                     description: '选择分支默认，是当前环境分支',
                     name: 'BRANCH_NAME',
                     quickFilterEnabled: false,

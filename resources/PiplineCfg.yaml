@@ -1,10 +1,3 @@
-#环境:
-#  项目名称:
-#      源码地址:
-#          打包前置目录:
-#                打包类型:
-#                   ansible配置文件路径:
-#                                 ansible执行脚本位置:
 dev:
   pre:
     GIT_URL: "https://gitee.com/mdald/pre.git"
@@ -12,7 +5,7 @@ dev:
     POINT: "backend"
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
-    JVM_OPS: -Xms
+    JVM_OPS: ""
 
 
   xxl-job:
@@ -21,3 +14,4 @@ dev:
     POINT: "backend"
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""

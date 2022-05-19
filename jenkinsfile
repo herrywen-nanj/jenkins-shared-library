@@ -1,5 +1,83 @@
 #!/usr/bin/env groovy
-
-
 @Library('my-jenkins-shared') _
-devops.call([GIT_URL:"https://gitee.com/mdald/pre.git", PRE_FIX:"pre-system", POINT: "backend"])
+# devops.call([BRANCH_NAME: "prv", GIT_URL:"https://gitee.com/mdald/pre.git", PRE_FIX:"pre-system", POINT: "backend"])
+
+pipeline {
+        agent any
+        tools {
+            nodejs 'NPM_HOME'
+            maven 'MAVEN_PATH'
+        }
+        options {
+            disableConcurrentBuilds() //禁止同时执行
+            buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '10')) // 构建记录保存7天,最多保存10个构建记录
+            skipDefaultCheckout()
+            timeout(time: 1, unit: 'HOURS')
+            timestamps()
+        }
+
+        environment {
+                    WEB_PATH = sh(script: "echo ${env.JOB_BASE_NAME}|awk -F'-' '{printf \$NF}'", returnStdout: true).trim()
+                    DEPLOY_PATH = "/app/" + "${WEB_PATH}"
+                    DEPLOY_ENVIRONMENT = sh(script: "echo ${env.JOB_NAME}|awk -F'/' '{printf \$1}'", returnStdout: true).trim()
+                    DINGTALK_CREDS = credentials('dingTalk')
+        }
+
+        stages {
+            stage("初始化步骤") {
+                steps {
+                    script{
+                        switch (DEPLOY_ENVIRONMENT) {
+                            case {DEPLOY_ENVIRONMENT == "test"}:
+                                TEST_ENVIRONMENT.call(WEB_PATH)
+                                break
+                            case {DEPLOY_ENVIRONMENT == "prv"}:
+                                PRV_ENVIRONMENT.call(WEB_PATH)
+                                break
+                            case {DEPLOY_ENVIRONMENT == "prod"}:
+                                PROD_ENVIRONMENT.call(WEB_PATH)
+                                break
+                        }
+                    }
+
+                }
+            }
+        }
+        post {
+            success {
+                echo 'Congratulations!'
+                sh """
+                curl 'https://oapi.dingtalk.com/robot/send?access_token=${DINGTALK_CREDS_PSW}' \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                        "msgtype": "markdown",
+                        "markdown": {
+                            "title":"发布详情",
+                            "text": "😄👍 构建成功 👍😄  \n**阿拉丁项目名称**：${env.JOB_BASE_NAME}  \n**构建用户**: ${BUILD_USER}   \n**Git log**: ${env.GIT_COMMIT}   \n**构建分支**: ${params.BRANCH_NAME}   \n**构建地址**：${RUN_DISPLAY_URL}"
+                        }
+                    }'
+            """
+            }
+            failure {
+                echo 'Oh no!'
+                sh """
+                curl 'https://oapi.dingtalk.com/robot/send?access_token=${DINGTALK_CREDS_PSW}' \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                        "msgtype": "markdown",
+                        "markdown": {
+                            "title":"发布详情",
+                            "text": "😖❌ 构建失败 ❌😖  \n**阿拉丁项目名称**：${env.JOB_BASE_NAME}  \n**构建用户**: ${BUILD_USER}   \n**Git log**: ${env.GIT_COMMIT}   \n**构建分支**: ${params.BRANCH_NAME}  \n**构建地址**：${RUN_DISPLAY_URL}"
+                        }
+                    }'
+            """
+            }
+            always {
+                echo 'clean your workspace when build is done!'
+            }
+            cleanup {
+                dir("${env.workspace}") {deleteDir()}
+                dir("${env.workspace}@tmp") {deleteDir()}
+            }
+        }
+}

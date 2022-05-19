@@ -1,6 +1,6 @@
 package com.aladingziben.devops
 
-def Build(POINT,PRE_FIX,DEPLOY_ENVIRONMENT) {
+def Build() {
     if (POINT == 'frontend') {
         dir("${env.workspace}") {
             sh 'npm install --unsafe-perm=true && npm run build:${DEPLOY_ENVIRONMENT}'
