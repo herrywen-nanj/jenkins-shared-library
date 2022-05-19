@@ -1,8 +1,5 @@
 #!/usr/bin/env groovy
 @Library('my-jenkins-shared') _
-
-# devops.call([BRANCH_NAME: "prv", GIT_URL:"https://gitee.com/mdald/pre.git", PRE_FIX:"pre-system", POINT: "backend"])
-
 pipeline {
         agent any
         tools {
