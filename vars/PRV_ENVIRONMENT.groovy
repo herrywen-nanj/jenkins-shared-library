@@ -22,70 +22,71 @@ def call(PROJECT_NAME) {
     def GitServer = new GitServer()
     def ansible = new ansible()
     def build = new build()
-
-    parameters {
-        gitParameter branch: '',
-                branchFilter: 'origin/(.*)',
-                defaultValue: 'prv',
-                description: '选择分支默认，是当前环境分支',
-                name: 'BRANCH_NAME',
-                quickFilterEnabled: false,
-                selectedValue: 'NONE',
-                sortMode: 'NONE',
-                tagFilter: '*',
-                type: 'GitParameterDefinition'
-    }
-
-    stage('Get all variables ') {
-        steps {
-            script {
-                CfgMessage.GetCfg(PROJECT_NAME)
-            }
+    pipline {
+        parameters {
+            gitParameter branch: '',
+                    branchFilter: 'origin/(.*)',
+                    defaultValue: 'prv',
+                    description: '选择分支默认，是当前环境分支',
+                    name: 'BRANCH_NAME',
+                    quickFilterEnabled: false,
+                    selectedValue: 'NONE',
+                    sortMode: 'NONE',
+                    tagFilter: '*',
+                    type: 'GitParameterDefinition'
         }
-    }
 
-    stage('Get build user'){
-        steps {
-            wrap([$class: 'BuildUser']) {
+        stage('Get all variables ') {
+            steps {
                 script {
-                    env.BUILD_USER = "${env.BUILD_USER}"
+                    CfgMessage.GetCfg(PROJECT_NAME)
                 }
             }
         }
-    }
 
-    stage('Clean up workspace') {
-        steps {
-            script {
-                cleanWs()
+        stage('Get build user') {
+            steps {
+                wrap([$class: 'BuildUser']) {
+                    script {
+                        env.BUILD_USER = "${env.BUILD_USER}"
+                    }
+                }
             }
         }
-    }
 
-    stage('checkout from scm') {
-        steps {
-            script {
-                FormatPrint.PrintMes("------ 拉取代码并获取git log ------","green")
-                GitServer.CheckOutCode("${params.BRANCH_NAME}")
+        stage('Clean up workspace') {
+            steps {
+                script {
+                    cleanWs()
+                }
             }
         }
-    }
-    stage('build') {
-        steps {
-            script {
-                build.Build()
+
+        stage('checkout from scm') {
+            steps {
+                script {
+                    FormatPrint.PrintMes("------ 拉取代码并获取git log ------", "green")
+                    GitServer.CheckOutCode("${params.BRANCH_NAME}")
+                }
             }
         }
-    }
-    stage('Deploy') {
-        when {
-            expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+        stage('build') {
+            steps {
+                script {
+                    build.Build()
+                }
             }
         }
-        steps {
-            script{
-                ansible.deploy()
+        stage('Deploy') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+            }
+            steps {
+                script {
+                    ansible.deploy()
+                }
             }
         }
     }
