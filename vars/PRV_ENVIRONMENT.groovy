@@ -44,15 +44,7 @@ def call(PROJECT_NAME) {
             }
         }
 
-        stage('Get build user') {
-            steps {
-                wrap([$class: 'BuildUser']) {
-                    script {
-                        env.BUILD_USER = "${env.BUILD_USER}"
-                    }
-                }
-            }
-        }
+
 
         stage('Clean up workspace') {
             steps {
