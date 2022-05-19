@@ -1,8 +1,5 @@
 #!/usr/bin/env groovy
 @Library('my-jenkins-shared') _
-
-# devops.call([BRANCH_NAME: "prv", GIT_URL:"https://gitee.com/mdald/pre.git", PRE_FIX:"pre-system", POINT: "backend"])
-
 pipeline {
         agent any
         tools {
@@ -28,6 +25,7 @@ pipeline {
             stage("初始化步骤") {
                 steps {
                     script{
+                        println("${DEPLOY_ENVIRONMENT}")
                         switch (DEPLOY_ENVIRONMENT) {
                             case {DEPLOY_ENVIRONMENT == "test"}:
                                 TEST_ENVIRONMENT.call(WEB_PATH)
