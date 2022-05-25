@@ -22,64 +22,52 @@ def call(PROJECT_NAME) {
     def GitServer = new GitServer()
     def ansible = new ansible()
     def build = new build()
-    pipline {
-        parameters {
-            gitParameter branch: '',
-                    branchFilter: 'origin/(.*)',
-                    defaultValue: 'prv',
-                    description: '选择分支默认，是当前环境分支',
-                    name: 'BRANCH_NAME',
-                    quickFilterEnabled: false,
-                    selectedValue: 'NONE',
-                    sortMode: 'NONE',
-                    tagFilter: '*',
-                    type: 'GitParameterDefinition'
-        }
 
-        stage('Get all variables ') {
-            steps {
-                script {
-                    CfgMessage.GetCfg(PROJECT_NAME)
-                }
+    stage('Get all variables ') {
+        steps {
+            script {
+                CfgMessage.GetCfg(PROJECT_NAME)
             }
         }
+    }
 
 
-
-        stage('Clean up workspace') {
-            steps {
-                script {
-                    cleanWs()
-                }
+    stage('Clean up workspace') {
+        steps {
+            script {
+                cleanWs()
             }
         }
+    }
 
-        stage('checkout from scm') {
-            steps {
-                script {
-                    FormatPrint.PrintMes("------ 拉取代码并获取git log ------", "green")
-                    GitServer.CheckOutCode("${params.BRANCH_NAME}")
-                }
+    stage('checkout from scm') {
+        steps {
+            script {
+                FormatPrint.PrintMes("------ 拉取代码并获取git log ------","green")
+                GitServer.CheckOutCode("${params.BRANCH_NAME}")
             }
         }
-        stage('build') {
-            steps {
-                script {
-                    build.Build()
-                }
+    }
+    stage('build') {
+        steps {
+            script {
+                FormatPrint.PrintMes("------ 正在打包 ------","green")
+                build.Build()
             }
         }
-        stage('Deploy') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
+    }
+    stage('Deploy') {
+        when {
+            expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS'
             }
-            steps {
-                script {
-                    ansible.deploy()
-                }
+        }
+        steps {
+            script{
+                ansible.deploy()
             }
         }
     }
 }
+return this
+
