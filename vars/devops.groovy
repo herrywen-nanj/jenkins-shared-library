@@ -75,7 +75,7 @@ def call() {
                 }
             }
 
-
+            /*
             stage('Clean up workspace') {
                 steps {
                     script {
@@ -83,6 +83,8 @@ def call() {
                     }
                 }
             }
+
+             */
 
             stage('checkout from scm') {
                 steps {
