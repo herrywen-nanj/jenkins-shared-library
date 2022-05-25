@@ -7,7 +7,7 @@ package com.aladingziben.devops
 
 
 def CheckOutCode(BRANCHNAME) {
-    checkout([$class                           : 'GitSCM', branches: [[name: "${BRANCHNAME}"]],
+    checkout([$class                           : 'GitSCM', branches: [[name: BRANCHNAME]],
               doGenerateSubmoduleConfigurations: false,
               extensions                       : [],
               submoduleCfg                     : [],

@@ -10,11 +10,17 @@
  * @param POINT, Used to package points,value is fronted or backend
  */
 import com.aladingziben.devops.FormatPrint
+import org.apache.tools.ant.Project
 
 
-def call(map) {
+def call() {
+    def (defaultBranchName,project_name) = "${env.JOB_BASE_NAME}".split("-")
     pipeline {
         agent any
+        tools {
+            nodejs 'NPM_HOME'
+            maven 'MAVEN_PATH'
+        }
         options {
             disableConcurrentBuilds() //禁止同时执行
             buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '10')) // 构建记录保存7天,最多保存10个构建记录
@@ -23,31 +29,28 @@ def call(map) {
             timestamps()
         }
 
-
         parameters {
             gitParameter branch: '',
                     branchFilter: 'origin/(.*)',
-                    defaultValue: 'prv',
+                    defaultValue: defaultBranchName,
                     description: '选择分支默认，是当前环境分支',
                     name: 'BRANCH_NAME',
                     quickFilterEnabled: false,
-                    selectedValue: 'NONE',
+                    selectedValue: 'DEFAULT',
                     sortMode: 'NONE',
                     tagFilter: '*',
                     type: 'GitParameterDefinition'
         }
 
         environment {
-            GIT_URL = "${map.GIT_URL}"
-            WEB_PATH = sh(script: "echo ${env.JOB_BASE_NAME}|awk -F'-' '{printf \$NF}'", returnStdout: true).trim()
-            PRE_FIX = "${map.PRE_FIX}"
+            WEB_PATH = "${project_name}"
             DEPLOY_PATH = "/app/" + "${WEB_PATH}"
-            POINT = "${map.POINT}"
-            DEPLOY_ENVIRONMENT = sh(script: "echo ${env.JOB_NAME}|awk -F'/' '{printf \$1}'", returnStdout: true).trim()
+            DEPLOY_ENVIRONMENT = "${defaultBranchName}"
             DINGTALK_CREDS = credentials('dingTalk')
         }
+
         stages {
-            stage('Get build user'){
+            stage('获取用户名') {
                 steps {
                     wrap([$class: 'BuildUser']) {
                         script {
@@ -56,75 +59,23 @@ def call(map) {
                     }
                 }
             }
-            stage('Clean up workspace') {
+            stage("初始化步骤") {
                 steps {
-                    script {
-                        cleanWs()
-                    }
-                }
-            }
-            stage('checkout from scm') {
-                steps {
-                    git branch: "${params.BRANCH_NAME}", credentialsId: 'gitee_account', url: "${GIT_URL}"
-                    script {
-                        dir("${env.workspace}"){
-                            env.GIT_COMMIT = sh(script: "git log -1 --pretty=%B | cat", returnStdout: true).trim()
+                    script{
+                        println("${DEPLOY_ENVIRONMENT}")
+                        switch (DEPLOY_ENVIRONMENT) {
+                            case {DEPLOY_ENVIRONMENT == "test"}:
+                                TEST_ENVIRONMENT.call(WEB_PATH)
+                                break
+                            case {DEPLOY_ENVIRONMENT == "prv"}:
+                                PRV_ENVIRONMENT.call(WEB_PATH)
+                                break
+                            case {DEPLOY_ENVIRONMENT == "prod"}:
+                                PROD_ENVIRONMENT.call(WEB_PATH)
+                                break
                         }
                     }
-                }
-            }
-            stage('build') {
-                tools {
-                    nodejs 'NPM_HOME'
-                    maven 'MAVEN_PATH'
-                }
-                steps {
-                    script {
-                        def FormatPrint = new FormatPrint()
-                        FormatPrint.PrintMes("------ 开始编译 ------","green")
-                        if (POINT == 'frontend') {
-                            dir("${env.workspace}"){
-                                sh 'npm install --unsafe-perm=true && npm run build:${DEPLOY_ENVIRONMENT}'
-                                env.ARTIFACTS_PATH = "${env.WORKSPACE}" + "/dist/"
-                            }
-                        }else if (POINT == 'backend'){
-                            dir("${env.workspace}"){
-                                sh 'mvn clean package -DskipTests -P${DEPLOY_ENVIRONMENT}'
-                                if (PRE_FIX != 'NULL'){
-                                    JAR_NAME = sh(script: "ls $PRE_FIX/target/**.jar", returnStdout: true).trim()
-                                    env.ARTIFACTS_PATH = "${env.WORKSPACE}" + "/" + "${JAR_NAME}"
-                                }else {
-                                    JAR_NAME = sh(script: "ls target/**.jar", returnStdout: true).trim()
-                                    env.ARTIFACTS_PATH = "${env.WORKSPACE}" + "/" + "${JAR_NAME}"
-                                }
-                                // echo "JAR_NAME的路径是$JAR_HOME"
 
-                            }
-                        }
-                    }
-                }
-            }
-            stage('Deploy') {
-                when {
-                    expression {
-                        currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                    }
-                }
-                steps {
-                    ansiblePlaybook (
-                            installation: "ansible",
-                            disableHostKeyChecking: true,
-                            //以颜色显示运行状态 colorized: true,
-                            playbook: "/opt/ansible/deploy.yml",
-                            inventory: "/etc/ansible/hosts",
-                            forks: 5,
-                            extraVars: [
-                                    POINT: "${POINT}",
-                                    DEPLOY_ENVIRONMENT: "${DEPLOY_ENVIRONMENT}",
-                                    ARTIFACTS_PATH: [value: "${ARTIFACTS_PATH}", hidden: true],
-                                    DEPLOY_PATH: [value: "${DEPLOY_PATH}", hidden: true]
-                            ]
-                    )
                 }
             }
         }
