@@ -14,6 +14,9 @@ import com.aladingziben.devops.FormatPrint
 
 def call() {
     def (defaultBranchName,project_name) = "${env.JOB_BASE_NAME}".split("-")
+    def excute_test = new TEST_ENVIRONMENT()
+    def excute_prv = new PRV_ENVIRONMENT()
+    def excute_prod = new PROD_ENVIRONMENT()
     pipeline {
         agent any
         tools {
@@ -65,13 +68,13 @@ def call() {
                         println("${WEB_PATH}")
                         switch (DEPLOY_ENVIRONMENT) {
                             case {DEPLOY_ENVIRONMENT == "test"}:
-                                TEST_ENVIRONMENT(WEB_PATH)
+                                excute_test.call(WEB_PATH)
                                 break
                             case {DEPLOY_ENVIRONMENT == "prv"}:
-                                PRV_ENVIRONMENT(WEB_PATH)
+                                excute_prv.call(WEB_PATH)
                                 break
                             case {DEPLOY_ENVIRONMENT == "prod"}:
-                                PROD_ENVIRONMENT(WEB_PATH)
+                                excute_prod.call(WEB_PATH)
                                 break
                         }
                     }
