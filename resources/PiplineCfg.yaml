@@ -1,4 +1,4 @@
-dev:
+prv:
   pre:
     GIT_URL: "https://gitee.com/mdald/pre.git"
     PRE_FIX: "pre-system"
