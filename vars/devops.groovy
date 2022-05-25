@@ -79,6 +79,7 @@ def call() {
                 }
             }
         }
+        /*
         post {
             success {
                 echo 'Congratulations!'
@@ -116,5 +117,7 @@ def call() {
                 dir("${env.workspace}@tmp") {deleteDir()}
             }
         }
+    }
+    */
     }
 }
