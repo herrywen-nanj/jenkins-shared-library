@@ -7,7 +7,7 @@ package com.aladingziben.devops
 
 
 def GetCfg(PROJECT_NAME) {
-    def yaml_file = libraryResource("pipelineCfg.yaml")
+    def yaml_file = libraryResource("PiplineCfg.yaml")
     def data = readYaml file : yaml_file
     env.GIT_URL = data["PROJECT_NAME"]['GIT_URL']
     env.PRE_FIX = data["PROJECT_NAME"]['POINT']
