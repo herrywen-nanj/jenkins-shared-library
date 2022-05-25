@@ -65,13 +65,13 @@ def call() {
                         println("${WEB_PATH}")
                         switch (DEPLOY_ENVIRONMENT) {
                             case {DEPLOY_ENVIRONMENT == "test"}:
-                                TEST_ENVIRONMENT.call(${WEB_PATH})
+                                TEST_ENVIRONMENT.call(WEB_PATH)
                                 break
                             case {DEPLOY_ENVIRONMENT == "prv"}:
-                                PRV_ENVIRONMENT.call(${WEB_PATH})
+                                PRV_ENVIRONMENT.call(WEB_PATH)
                                 break
                             case {DEPLOY_ENVIRONMENT == "prod"}:
-                                PROD_ENVIRONMENT.call(${WEB_PATH})
+                                PROD_ENVIRONMENT.call(WEB_PATH)
                                 break
                         }
                     }
