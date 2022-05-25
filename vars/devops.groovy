@@ -10,14 +10,14 @@
  * @param POINT, Used to package points,value is fronted or backend
  */
 import com.aladingziben.devops.FormatPrint
-import com.aladingziben.devops.LoadCfg
+//import com.aladingziben.devops.LoadCfg
 import com.aladingziben.devops.GitServer
 import com.aladingziben.devops.ansible
 import com.aladingziben.devops.build
 
 def call() {
     def FormatPrint = new FormatPrint()
-    def CfgMessage = new LoadCfg()
+    //def CfgMessage = new LoadCfg()
     def GitServer = new GitServer()
     def ansible = new ansible()
     def build = new build()
@@ -70,7 +70,14 @@ def call() {
                 steps {
                     script {
                         println("---------------$defaultBranchName--------------------")
-                        CfgMessage.GetCfg(defaultBranchName,project_name)
+                        //CfgMessage.GetCfg(defaultBranchName,project_name)
+                        def yaml_file = libraryResource("PiplineCfg.yaml")
+                        def data = readYaml file : yaml_file
+                        env.GIT_URL = data["DEPLOY_ENVIRONMENT"]["PROJECT_NAME"]['GIT_URL']
+                        env.PRE_FIX = data["DEPLOY_ENVIRONMENT"]["PROJECT_NAME"]['POINT']
+                        env.POINT = data["DEPLOY_ENVIRONMENT"]["PROJECT_NAME"]['PRE_FIX']
+                        env.PLAYBOOK_PATH = data["DEPLOY_ENVIRONMENT"]["PROJECT_NAME"]['PLAYBOOK_PATH']
+                        env.INVENTORY_PATH = data["DEPLOY_ENVIRONMENT"]["PROJECT_NAME"]['INVENTORY_PATH']
                     }
                 }
             }
