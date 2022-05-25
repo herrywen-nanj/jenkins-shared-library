@@ -10,7 +10,6 @@
  * @param POINT, Used to package points,value is fronted or backend
  */
 import com.aladingziben.devops.FormatPrint
-import com.aladingziben.devops.FormatPrint
 import com.aladingziben.devops.LoadCfg
 import com.aladingziben.devops.GitServer
 import com.aladingziben.devops.ansible
