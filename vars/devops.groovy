@@ -10,7 +10,6 @@
  * @param POINT, Used to package points,value is fronted or backend
  */
 import com.aladingziben.devops.FormatPrint
-import org.apache.tools.ant.Project
 
 
 def call() {
