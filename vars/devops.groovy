@@ -69,6 +69,7 @@ def call() {
             stage('Get all variables ') {
                 steps {
                     script {
+                        println("---------------$defaultBranchName--------------------")
                         CfgMessage.GetCfg(defaultBranchName,project_name)
                     }
                 }
