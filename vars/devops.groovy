@@ -62,10 +62,10 @@ def call() {
             stage("初始化步骤") {
                 steps {
                     script{
-                        println("${DEPLOY_ENVIRONMENT}")
+                        println("${DEPLOY_ENVIRONMENT}","${WEB_PATH}")
                         switch (DEPLOY_ENVIRONMENT) {
                             case {DEPLOY_ENVIRONMENT == "test"}:
-                                TEST_ENVIRONMENT.call(WEB_PATH)
+                                TEST_ENVIRONMENT.call(${WEB_PATH})
                                 break
                             case {DEPLOY_ENVIRONMENT == "prv"}:
                                 PRV_ENVIRONMENT.call(WEB_PATH)
