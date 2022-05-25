@@ -10,13 +10,19 @@
  * @param POINT, Used to package points,value is fronted or backend
  */
 import com.aladingziben.devops.FormatPrint
-
+import com.aladingziben.devops.FormatPrint
+import com.aladingziben.devops.LoadCfg
+import com.aladingziben.devops.GitServer
+import com.aladingziben.devops.ansible
+import com.aladingziben.devops.build
 
 def call() {
-    def (defaultBranchName,project_name) = "${env.JOB_BASE_NAME}".split("-")
-    def excute_test = new TEST_ENVIRONMENT()
-    def excute_prv = new PRV_ENVIRONMENT()
-    def excute_prod = new PROD_ENVIRONMENT()
+    def FormatPrint = new FormatPrint()
+    def CfgMessage = new LoadCfg()
+    def GitServer = new GitServer()
+    def ansible = new ansible()
+    def build = new build()
+    def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
     pipeline {
         agent any
         tools {
@@ -61,27 +67,54 @@ def call() {
                     }
                 }
             }
-            stage("初始化步骤") {
+            stage('Get all variables ') {
                 steps {
-                    script{
-                        println("${DEPLOY_ENVIRONMENT}")
-                        println("${WEB_PATH}")
-                        switch (DEPLOY_ENVIRONMENT) {
-                            case {DEPLOY_ENVIRONMENT == "test"}:
-                                excute_test.call(WEB_PATH)
-                                break
-                            case {DEPLOY_ENVIRONMENT == "prv"}:
-                                excute_prv.call(WEB_PATH)
-                                break
-                            case {DEPLOY_ENVIRONMENT == "prod"}:
-                                excute_prod.call(WEB_PATH)
-                                break
-                        }
+                    script {
+                        CfgMessage.GetCfg(PROJECT_NAME)
                     }
+                }
+            }
 
+
+            stage('Clean up workspace') {
+                steps {
+                    script {
+                        cleanWs()
+                    }
+                }
+            }
+
+            stage('checkout from scm') {
+                steps {
+                    script {
+                        FormatPrint.PrintMes("------ 拉取代码并获取git log ------", "green")
+                        GitServer.CheckOutCode("${params.BRANCH_NAME}")
+                    }
+                }
+            }
+            stage('build') {
+                steps {
+                    script {
+                        FormatPrint.PrintMes("------ 正在打包 ------", "green")
+                        build.Build()
+                    }
+                }
+            }
+            stage('Deploy') {
+                when {
+                    expression {
+                        currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                    }
+                }
+                steps {
+                    script {
+                        ansible.deploy()
+                    }
                 }
             }
         }
+    }
+}
         /*
         post {
             success {
@@ -122,5 +155,3 @@ def call() {
         }
     }
     */
-    }
-}
