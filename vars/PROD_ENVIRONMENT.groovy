@@ -23,19 +23,6 @@ def call(PROJECT_NAME) {
     def ansible = new ansible()
     def build = new build()
 
-    parameters {
-        gitParameter branch: '',
-                branchFilter: 'origin/(.*)',
-                defaultValue: 'prod',
-                description: '选择分支默认，是当前环境分支',
-                name: 'BRANCH_NAME',
-                quickFilterEnabled: false,
-                selectedValue: 'NONE',
-                sortMode: 'NONE',
-                tagFilter: '*',
-                type: 'GitParameterDefinition'
-    }
-
     stage('Get all variables ') {
         steps {
             script {
@@ -44,15 +31,6 @@ def call(PROJECT_NAME) {
         }
     }
 
-    stage('Get build user'){
-        steps {
-            wrap([$class: 'BuildUser']) {
-                script {
-                    env.BUILD_USER = "${env.BUILD_USER}"
-                }
-            }
-        }
-    }
 
     stage('Clean up workspace') {
         steps {
@@ -73,6 +51,7 @@ def call(PROJECT_NAME) {
     stage('build') {
         steps {
             script {
+                FormatPrint.PrintMes("------ 正在打包 ------","green")
                 build.Build()
             }
         }
@@ -90,3 +69,5 @@ def call(PROJECT_NAME) {
         }
     }
 }
+return this
+
