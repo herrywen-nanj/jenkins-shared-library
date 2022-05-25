@@ -69,7 +69,7 @@ def call() {
             stage('Get all variables ') {
                 steps {
                     script {
-                        CfgMessage.GetCfg(PROJECT_NAME)
+                        CfgMessage.GetCfg(project_name)
                     }
                 }
             }
