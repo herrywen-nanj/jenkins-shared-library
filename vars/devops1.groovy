@@ -6,6 +6,7 @@ pipeline {
         stage ('read') {
             steps {
                 script {
+		    println("$defaultBranchName")
                     // def yaml_file = libraryResource('PiplineCfg.yaml')
                     def data = readYaml file : '/opt/PiplineCfg.yaml'
 		    sh "echo $pwd && ls -l"
