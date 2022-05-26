@@ -6,9 +6,9 @@ pipeline {
         stage ('read') {
             steps {
                 script {
-                    def yaml_file = libraryResource('PiplineCfg.yaml')
-                    //def data = readYaml file : '/opt/PiplineCfg.yaml'
-                    def data = readYaml txt : yaml_file
+                    // def yaml_file = libraryResource('PiplineCfg.yaml')
+                    // def data = readYaml file : '/opt/PiplineCfg.yaml'
+                    def data = readYaml txt : 'PiplineCfg.yaml'
                     println data.get(defaultBranchName).get(project_name).get('PRE_FIX')
                }
             }
