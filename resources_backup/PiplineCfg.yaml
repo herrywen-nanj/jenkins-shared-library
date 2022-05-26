@@ -1,0 +1,15 @@
+prv:
+  pre:
+    GIT_URL: "https://gitee.com/mdald/pre.git"
+    PRE_FIX: "pre-system"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+
+
+  xxl-job:
+    GIT_URL: "https://gitee.com/mdald/xxljob.git"
+    PRE_FIX: "xxl-job-admin"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
