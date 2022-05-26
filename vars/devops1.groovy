@@ -9,7 +9,7 @@ pipeline {
                     // def yaml_file = libraryResource('PiplineCfg.yaml')
                     def data = readYaml file : '/opt/PiplineCfg.yaml'
 		    sh "echo $pwd && ls -l"
-                    #def data = readYaml txt : 'PiplineCfg.yaml'
+                    //def data = readYaml txt : 'PiplineCfg.yaml'
                     println data.get(defaultBranchName).get(project_name).get('PRE_FIX')
                }
             }
