@@ -73,8 +73,17 @@ def call() {
                     script {
                         println("---------------$defaultBranchName--------------------")
                         CfgMessage.GetCfg(defaultBranchName,project_name)
-						println("---------------$env.GIT_URL------------------------")
-                        
+                    }
+                }
+            }
+
+
+	    stage('Print all variables ') {
+                steps {
+                    script {
+                        println("---------------${GIT_URL}---------------------------")
+                        println("---------------${INVENTORY_PATH}---------------------------")
+                        println("---------------${params.BRANCH_NAME}---------------------------")
                     }
                 }
             }
