@@ -64,7 +64,7 @@ def call() {
                     selectedValue: 'DEFAULT',
                     sortMode: 'DESCENDING_SMART',
                     tagFilter: '*',
-                    type: 'PT_BRANCH',
+                    type: 'GitParameterDefinition',
                     description: '选择分支默认，是当前环境分支',
             )
         }
