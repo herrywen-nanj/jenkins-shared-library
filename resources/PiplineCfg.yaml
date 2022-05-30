@@ -1,4 +1,11 @@
 prv:
+  alading_spider：
+    GIT_URL: "https://gitee.com/mdald/com-alading-spider.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
   pre:
     GIT_URL: "https://gitee.com/mdald/pre.git"
     PRE_FIX: "pre-system"
