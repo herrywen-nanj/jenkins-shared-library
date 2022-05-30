@@ -1,11 +1,68 @@
-prv:
-  alading_spider：
+prod:
+  alading_spider:
     GIT_URL: "https://gitee.com/mdald/com-alading-spider.git"
     PRE_FIX: "NULL"
     POINT: "backend"
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
     JVM_OPS: ""
+
+
+  collect:
+    GIT_URL: "https://gitee.com/mdald/com-alading-collect.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+  dash:
+    GIT_URL: "https://gitee.com/mdald/com-alading-dashboard.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+ 
+  data:
+    GIT_URL: "https://gitee.com/mdald/com-alading-data.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: "" 
+
+  mappapi_cronjob:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+    
+   mappapi_quanzi:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+   mappapi_service:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-service"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
   pre:
     GIT_URL: "https://gitee.com/mdald/pre.git"
     PRE_FIX: "pre-system"
@@ -14,6 +71,170 @@ prv:
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
     JVM_OPS: ""
 
+  xxl-job:
+    GIT_URL: "https://gitee.com/mdald/xxljob.git"
+    PRE_FIX: "xxl-job-admin"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+    
+prv:
+  alading_spider:
+    GIT_URL: "https://gitee.com/mdald/com-alading-spider.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+  collect:
+    GIT_URL: "https://gitee.com/mdald/com-alading-collect.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+  dash:
+    GIT_URL: "https://gitee.com/mdald/com-alading-dashboard.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+ 
+  data:
+    GIT_URL: "https://gitee.com/mdald/com-alading-data.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: "" 
+
+  mappapi_cronjob:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+    
+   mappapi_quanzi:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+   mappapi_service:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-service"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+  pre:
+    GIT_URL: "https://gitee.com/mdald/pre.git"
+    PRE_FIX: "pre-system"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+  xxl-job:
+    GIT_URL: "https://gitee.com/mdald/xxljob.git"
+    PRE_FIX: "xxl-job-admin"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+
+test:
+  alading_spider:
+    GIT_URL: "https://gitee.com/mdald/com-alading-spider.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+  collect:
+    GIT_URL: "https://gitee.com/mdald/com-alading-collect.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+  dash:
+    GIT_URL: "https://gitee.com/mdald/com-alading-dashboard.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+ 
+  data:
+    GIT_URL: "https://gitee.com/mdald/com-alading-data.git"
+    PRE_FIX: "NULL"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: "" 
+
+  mappapi_cronjob:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+    
+    
+   mappapi_quanzi:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-cronjob"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+   mappapi_service:
+    GIT_URL: "https://gitee.com/mdald/background-code.git"
+    PRE_FIX: "mappapi-service"
+    POINT: "backend"
+    DEPLOY_PRE_PATH: "/app/background_code/"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
+
+
+  pre:
+    GIT_URL: "https://gitee.com/mdald/pre.git"
+    PRE_FIX: "pre-system"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
 
   xxl-job:
     GIT_URL: "https://gitee.com/mdald/xxljob.git"
