@@ -42,7 +42,7 @@ def call() {
 
 
 
-	parameters {
+		parameters {
             gitParameter (
                     defaultValue: defaultBranchName,
                     branchFilter: 'origin/(.*)',
