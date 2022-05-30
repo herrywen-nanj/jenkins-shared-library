@@ -24,6 +24,7 @@ def call() {
     def ansible = new ansible()
     def build = new build()
     def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
+    CfgMessage.GetCfg(defaultBranchName,project_name)
     //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
     pipeline {
         agent any
@@ -93,9 +94,9 @@ def call() {
                 steps {
                     script {
                         println("---------------$defaultBranchName--------------------")
-                        def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
+                        //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
 			println("---------------$GIT_URL------------------------------")
-			CfgMessage.GetCfg(defaultBranchName,project_name)
+			//CfgMessage.GetCfg(defaultBranchName,project_name)
                     }
                 }
             }
