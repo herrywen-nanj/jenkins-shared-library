@@ -60,7 +60,7 @@ def call() {
                     defaultValue: defaultBranchName,
                     branchFilter: 'origin/(.*)',
                     name: 'BRANCH_NAME',
-                    quickFilterEnabled: true,
+                    quickFilterEnabled: false,
                     selectedValue: 'DEFAULT',
                     sortMode: 'DESCENDING_SMART',
                     tagFilter: '*',
