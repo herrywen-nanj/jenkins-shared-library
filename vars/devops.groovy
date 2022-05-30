@@ -37,7 +37,9 @@ def call() {
             timeout(time: 1, unit: 'HOURS')
             timestamps()
         }
+        
 
+	/*
         parameters {
             gitParameter branch: '',
                     branchFilter: 'origin/(.*)',
@@ -49,6 +51,23 @@ def call() {
                     sortMode: 'NONE',
                     tagFilter: '*',
                     type: 'GitParameterDefinition'
+        }
+	*/
+
+
+	parameters {
+            gitParameter (
+                    defaultValue: defaultBranchName,
+                    branchFilter: 'origin/(.*)',
+                    name: 'BRANCH_NAME',
+                    quickFilterEnabled: false,
+                    selectedValue: 'DEFAULT',
+                    sortMode: 'DESCENDING_SMART',
+                    tagFilter: '*',
+                    type: 'PT_BRANCH',
+                    description: 'Please select a branch or tag to build',
+                    //useRepository: git_url
+            )
         }
 
         environment {
