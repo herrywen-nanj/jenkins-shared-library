@@ -66,6 +66,7 @@ def call() {
                     tagFilter: '*',
                     type: 'GitParameterDefinition',
                     description: '选择分支默认，是当前环境分支',
+		    useRepository: 'https://gitee.com/mdald/pre.git'
             )
         }
 
