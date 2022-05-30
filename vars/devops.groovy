@@ -25,7 +25,6 @@ def call() {
     def build = new build()
     def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
     CfgMessage.GetCfg(defaultBranchName,project_name)
-    //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
     pipeline {
         agent any
         tools {
@@ -41,20 +40,6 @@ def call() {
         }
         
 
-	/*
-        parameters {
-            gitParameter branch: '',
-                    branchFilter: 'origin/(.*)',
-                    defaultValue: defaultBranchName,
-                    description: '选择分支默认，是当前环境分支',
-                    name: 'BRANCH_NAME',
-                    quickFilterEnabled: false,
-                    selectedValue: 'DEFAULT',
-                    sortMode: 'NONE',
-                    tagFilter: '*',
-                    type: 'GitParameterDefinition'
-        }
-	*/
 
 
 	parameters {
@@ -77,7 +62,6 @@ def call() {
             DEPLOY_PATH = "/app/" + "${WEB_PATH}"
             DEPLOY_ENVIRONMENT = "${defaultBranchName}"
             DINGTALK_CREDS = credentials('dingTalk')
-	    //GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
         }
 
         stages {
@@ -90,27 +74,8 @@ def call() {
                     }
                 }
             }
-            stage('Get all variables ') {
-                steps {
-                    script {
-                        println("---------------$defaultBranchName--------------------")
-                        //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
-			println("---------------$GIT_URL------------------------------")
-			//CfgMessage.GetCfg(defaultBranchName,project_name)
-                    }
-                }
-            }
 
 
-	    stage('Print all variables ') {
-                steps {
-                    script {
-                        println("---------------${GIT_URL}---------------------------")
-                        println("---------------${INVENTORY_PATH}---------------------------")
-                        println("---------------${params.BRANCH_NAME}---------------------------")
-                    }
-                }
-            }
 
 
             stage('Clean up workspace') {
