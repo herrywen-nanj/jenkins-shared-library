@@ -43,7 +43,7 @@ prod:
     JVM_OPS: ""
     
     
-   mappapi_quanzi:
+  mappapi_quanzi:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-cronjob"
     POINT: "backend"
@@ -53,7 +53,7 @@ prod:
     JVM_OPS: ""
 
 
-   mappapi_service:
+  mappapi_service:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-service"
     POINT: "backend"
@@ -125,7 +125,7 @@ prv:
     JVM_OPS: ""
     
     
-   mappapi_quanzi:
+  mappapi_quanzi:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-cronjob"
     POINT: "backend"
@@ -135,7 +135,7 @@ prv:
     JVM_OPS: ""
 
 
-   mappapi_service:
+  mappapi_service:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-service"
     POINT: "backend"
@@ -208,7 +208,7 @@ test:
     JVM_OPS: ""
     
     
-   mappapi_quanzi:
+  mappapi_quanzi:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-cronjob"
     POINT: "backend"
@@ -218,7 +218,7 @@ test:
     JVM_OPS: ""
 
 
-   mappapi_service:
+  mappapi_service:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
     PRE_FIX: "mappapi-service"
     POINT: "backend"
