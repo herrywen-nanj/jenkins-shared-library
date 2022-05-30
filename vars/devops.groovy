@@ -24,7 +24,7 @@ def call() {
     def ansible = new ansible()
     def build = new build()
     def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
-    def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
+    //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
     pipeline {
         agent any
         tools {
@@ -67,7 +67,7 @@ def call() {
                     tagFilter: '*',
                     type: 'GitParameterDefinition',
                     description: '选择分支默认，是当前环境分支',
-		    useRepository: GIT_URL
+		    useRepository: 'https://gitee.com/mdald/pre.git'
             )
         }
 
@@ -76,6 +76,7 @@ def call() {
             DEPLOY_PATH = "/app/" + "${WEB_PATH}"
             DEPLOY_ENVIRONMENT = "${defaultBranchName}"
             DINGTALK_CREDS = credentials('dingTalk')
+	    //GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
         }
 
         stages {
@@ -92,7 +93,9 @@ def call() {
                 steps {
                     script {
                         println("---------------$defaultBranchName--------------------")
-                        CfgMessage.GetCfg(defaultBranchName,project_name)
+                        def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
+			println("---------------$GIT_URL------------------------------")
+			CfgMessage.GetCfg(defaultBranchName,project_name)
                     }
                 }
             }
