@@ -73,7 +73,7 @@ def call() {
                     script {
                         println("---------------$defaultBranchName--------------------")
                         CfgMessage.GetCfg(defaultBranchName,project_name)
-						println("---------------${env.GIT_URL)------------------------")
+						println("---------------$env.GIT_URL------------------------")
                         
                     }
                 }
