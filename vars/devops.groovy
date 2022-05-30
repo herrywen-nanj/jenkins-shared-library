@@ -60,13 +60,12 @@ def call() {
                     defaultValue: defaultBranchName,
                     branchFilter: 'origin/(.*)',
                     name: 'BRANCH_NAME',
-                    quickFilterEnabled: false,
+                    quickFilterEnabled: true,
                     selectedValue: 'DEFAULT',
                     sortMode: 'DESCENDING_SMART',
                     tagFilter: '*',
                     type: 'PT_BRANCH',
-                    description: 'Please select a branch or tag to build',
-                    //useRepository: git_url
+                    description: '选择分支默认，是当前环境分支',
             )
         }
 
