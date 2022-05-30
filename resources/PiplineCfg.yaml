@@ -243,3 +243,12 @@ test:
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
     JVM_OPS: ""
+  
+  
+  organ_system:
+    GIT_URL: "https://gitee.com/mdald/organ.git"
+    PRE_FIX: "organ-system"
+    POINT: "backend"
+    INVENTORY_PATH: "/etc/ansible/hosts"
+    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
