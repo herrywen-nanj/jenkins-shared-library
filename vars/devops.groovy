@@ -53,7 +53,7 @@ def call() {
                     tagFilter: '*',
                     type: 'GitParameterDefinition',
                     description: '选择分支默认，是当前环境分支',
-		    useRepository: GIT_URL
+					useRepository: GIT_URL
             )
         }
 
