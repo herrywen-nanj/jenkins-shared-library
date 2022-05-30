@@ -5,6 +5,7 @@ prv:
     POINT: "backend"
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
 
 
   xxl-job:
@@ -13,3 +14,4 @@ prv:
     POINT: "backend"
     INVENTORY_PATH: "/etc/ansible/hosts"
     PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    JVM_OPS: ""
