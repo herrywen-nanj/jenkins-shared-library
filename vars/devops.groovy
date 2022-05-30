@@ -24,8 +24,8 @@ def call() {
     def ansible = new ansible()
     def build = new build()
     def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
-    //CfgMessage.GetCfg(defaultBranchName,project_name)
-    def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
+    CfgMessage.GetCfg(defaultBranchName,project_name)
+    //def GIT_URL = CfgMessage.GetCfg(defaultBranchName,project_name).GIT_URL
     pipeline {
         agent any
         tools {
