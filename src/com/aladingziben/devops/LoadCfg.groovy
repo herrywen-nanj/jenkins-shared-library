@@ -9,8 +9,6 @@ package com.aladingziben.devops
 def GetCfg(DEPLOY_ENVIRONMENT,PROJECT_NAME) {
     def yaml_file = libraryResource('PiplineCfg.yaml')
     def data = readYaml text : yaml_file
-    println("----------------------------------${DEPLOY_ENVIRONMENT}-----------------------------")
-    println("----------------------------------${PROJECT_NAME}-----------------------------------")
     env.GIT_URL = data.get(DEPLOY_ENVIRONMENT).get(PROJECT_NAME).get('GIT_URL')
     env.PRE_FIX = data.get(DEPLOY_ENVIRONMENT).get(PROJECT_NAME).get('PRE_FIX')
     env.POINT = data.get(DEPLOY_ENVIRONMENT).get(PROJECT_NAME).get('POINT')

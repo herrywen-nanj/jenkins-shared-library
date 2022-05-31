@@ -2,7 +2,7 @@
  * @author: herrywen
  * @Date: 2022-05-31
  */
-/*
+
 package com.aladingziben.devops
 
 
@@ -17,8 +17,9 @@ def GetDefaultBranchName(String Environment_Prefix) {
 }
 
 return this
-*/
 
+
+/*
 package com.aladingziben.devops
 
 
@@ -33,13 +34,7 @@ def GetDefaultBranchName(String Environment_Prefix) {
 }
 
 //return this
-
-
-
-
-
-
-
+*/
 
 
 
