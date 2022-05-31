@@ -30,7 +30,7 @@ def call() {
     println("----------------------------------------------${defaultBranchName}-------------------------------------")
     println("----------------------------------------------${project_name}-------------------------------------")
     //BranchName.GetDefaultBranchName(Environment_Prefix)
-    CfgMessage.GetCfg(defaultBranchName,project_name)
+    CfgMessage.GetCfg("${defaultBranchName}","${project_name}")
     pipeline {
         agent any
         tools {
