@@ -2,7 +2,7 @@
  * @author: herrywen
  * @Date: 2022-05-31
  */
-
+/*
 package com.aladingziben.devops
 
 
@@ -17,6 +17,23 @@ def GetDefaultBranchName(String Environment_Prefix) {
 }
 
 return this
+*/
+
+package com.aladingziben.devops
+
+
+def GetDefaultBranchName(String Environment_Prefix) {
+    this.Environment_Prefix = Environment_Prefix 
+	if (this.Environment_Prefix == 'prod') {
+		String defaultBranchName = "master"
+	}  else {
+		String defaultBranchName = "${this.Environment_Prefix}"             
+	}
+	 return defaultBranchName
+}
+
+return this
+
 
 
 
