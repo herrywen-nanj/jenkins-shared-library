@@ -25,7 +25,8 @@ def call() {
     def ansible = new ansible()
     def build = new build()
     def BranchName = new BranchName()
-    def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
+    def (Environment_Prefix, project_name) = "${env.JOB_BASE_NAME}".split("-")
+    def defaultBranchName = BranchName.GetDefaultBranchName(Environment_Prefix)
     CfgMessage.GetCfg(defaultBranchName,project_name)
     pipeline {
         agent any
@@ -44,7 +45,7 @@ def call() {
 
 
 
-		parameters {
+	parameters {
             gitParameter (
                     defaultValue: defaultBranchName,
                     branchFilter: 'origin/(.*)',
@@ -55,7 +56,7 @@ def call() {
                     tagFilter: '*',
                     type: 'GitParameterDefinition',
                     description: '选择分支默认，是当前环境分支',
-					useRepository: GIT_URL
+		    useRepository: GIT_URL
             )
         }
 
