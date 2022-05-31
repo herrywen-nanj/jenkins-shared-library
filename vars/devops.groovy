@@ -59,7 +59,7 @@ def call() {
 
         environment {
             WEB_PATH = "${project_name}"
-            DEPLOY_PATH = "/app/" + "${WEB_PATH}"
+            DEPLOY_PATH = "${DEPLOY_PRE_PATH}" + "${WEB_PATH}"
             DEPLOY_ENVIRONMENT = "${defaultBranchName}"
             DINGTALK_CREDS = credentials('dingTalk')
         }
