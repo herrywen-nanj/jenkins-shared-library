@@ -24,7 +24,6 @@ def call() {
     def GitServer = new GitServer()
     def ansible = new ansible()
     def build = new build()
-    //def BranchName = new BranchName()
     def (defaultBranchName, project_name) = "${env.JOB_BASE_NAME}".split("-")
     CfgMessage.GetCfg(defaultBranchName,project_name)
     pipeline {
