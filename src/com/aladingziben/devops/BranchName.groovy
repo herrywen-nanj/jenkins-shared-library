@@ -29,10 +29,10 @@ def GetDefaultBranchName(String Environment_Prefix) {
 	}  else {
 		this.defaultBranchName = "${this.Environment_Prefix}"             
 	}
-	//return "${this.defaultBranchName}"
+	return "${this.defaultBranchName}"
 }
 
-return this
+//return this
 
 
 
