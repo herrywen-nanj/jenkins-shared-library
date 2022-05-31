@@ -16,6 +16,8 @@ def GetDefaultBranchName(String Environment_Prefix) {
 	// return "${this.defaultBranchName}"
 }
 
+return this
+
 
 
 
