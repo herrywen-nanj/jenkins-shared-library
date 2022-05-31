@@ -25,11 +25,11 @@ package com.aladingziben.devops
 def GetDefaultBranchName(String Environment_Prefix) {
     this.Environment_Prefix = Environment_Prefix 
 	if (this.Environment_Prefix == 'prod') {
-		def defaultBranchName = "master"
+		def this.defaultBranchName = "master"
 	}  else {
-		def defaultBranchName = "${this.Environment_Prefix}"             
+		def this.defaultBranchName = "${this.Environment_Prefix}"             
 	}
-	return "${defaultBranchName}"
+	return "${this.defaultBranchName}"
 }
 
 return this
