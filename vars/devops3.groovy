@@ -26,7 +26,7 @@ def call() {
     def build = new build()
     def BranchName = new BranchName()
     def (Environment_Prefix, project_name) = "${env.JOB_BASE_NAME}".split("-")
-    def defaultBranchName = BranchName.GetDefaultBranchName(Environment_Prefix)
+    def defaultBranchName = BranchName.GetDefaultBranchName("${Environment_Prefix}")
     println("----------------------------------------------${defaultBranchName}-------------------------------------")
     println("----------------------------------------------${project_name}-------------------------------------")
     //BranchName.GetDefaultBranchName(Environment_Prefix)
