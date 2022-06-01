@@ -27,9 +27,6 @@ def call() {
     def BranchName1 = new BranchName1()
     def (Environment_Prefix, project_name) = "${env.JOB_BASE_NAME}".split("-")
     def defaultBranchName = BranchName1.GetDefaultBranchName(Environment_Prefix)
-    println("----------------------------------------------${defaultBranchName}-------------------------------------")
-    println("----------------------------------------------${project_name}-------------------------------------")
-    //BranchName.GetDefaultBranchName(Environment_Prefix)
     CfgMessage.GetCfg(Environment_Prefix,project_name)
     pipeline {
         agent any
