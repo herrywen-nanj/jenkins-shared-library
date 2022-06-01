@@ -14,7 +14,7 @@ import com.aladingziben.devops.LoadCfg
 import com.aladingziben.devops.GitServer
 import com.aladingziben.devops.ansible
 import com.aladingziben.devops.build
-import com.aladingziben.devops.BranchName
+import com.aladingziben.devops.BranchName1
 
 
 
@@ -24,13 +24,13 @@ def call() {
     def GitServer = new GitServer()
     def ansible = new ansible()
     def build = new build()
-    def BranchName = new BranchName()
+    def BranchName1 = new BranchName1()
     def (Environment_Prefix, project_name) = "${env.JOB_BASE_NAME}".split("-")
-    def defaultBranchName = BranchName.GetDefaultBranchName(Environment_Prefix)
+    def defaultBranchName = BranchName1.GetDefaultBranchName(Environment_Prefix)
     println("----------------------------------------------${defaultBranchName}-------------------------------------")
     println("----------------------------------------------${project_name}-------------------------------------")
     //BranchName.GetDefaultBranchName(Environment_Prefix)
-    CfgMessage.GetCfg(defaultBranchName,project_name)
+    CfgMessage.GetCfg(Environment_Prefix,project_name)
     pipeline {
         agent any
         tools {
