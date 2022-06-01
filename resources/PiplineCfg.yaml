@@ -73,7 +73,7 @@ prod:
     POINT: "backend"
     DEPLOY_PRE_PATH: "/app/"
     INVENTORY_PATH: "/etc/ansible/hosts"
-    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    PLAYBOOK_PATH: "/opt/ansible/deploy-prod_pre.yml"
     JVM_OPS: ""
 
   xxl-job:
@@ -82,7 +82,7 @@ prod:
     POINT: "backend"
     DEPLOY_PRE_PATH: "/app/"
     INVENTORY_PATH: "/etc/ansible/hosts"
-    PLAYBOOK_PATH: "/opt/ansible/deploy.yml"
+    PLAYBOOK_PATH: "/opt/ansible/deploy-prod_xxl-job.yml"
     JVM_OPS: ""
     
     
