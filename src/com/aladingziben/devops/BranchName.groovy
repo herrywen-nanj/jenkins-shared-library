@@ -9,23 +9,6 @@ package com.aladingziben.devops
 def GetDefaultBranchName(String Environment_Prefix) {
     this.Environment_Prefix = Environment_Prefix 
 	if (this.Environment_Prefix == 'prod') {
-		env.defaultBranchName = "master"
-	}  else {
-		env.defaultBranchName = "${this.Environment_Prefix}"             
-	}
-	// return "${this.defaultBranchName}"
-}
-
-return this
-
-
-/*
-package com.aladingziben.devops
-
-
-def GetDefaultBranchName(String Environment_Prefix) {
-    this.Environment_Prefix = Environment_Prefix 
-	if (this.Environment_Prefix == 'prod') {
 		this.defaultBranchName = "master"
 	}  else {
 		this.defaultBranchName = "${this.Environment_Prefix}"             
@@ -33,11 +16,7 @@ def GetDefaultBranchName(String Environment_Prefix) {
 	return "${this.defaultBranchName}"
 }
 
-//return this
-*/
-
-
-
+return this
 
 
 
