@@ -137,7 +137,7 @@ prv:
     
   mappapi_quanzi:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
-    PRE_FIX: "mappapi-cronjob"
+    PRE_FIX: "mappapi-quanzi"
     POINT: "backend"
     DEPLOY_PRE_PATH: "/app/background_code/"
     INVENTORY_PATH: "/etc/ansible/hosts"
@@ -226,7 +226,7 @@ test:
     
   mappapi_quanzi:
     GIT_URL: "https://gitee.com/mdald/background-code.git"
-    PRE_FIX: "mappapi-cronjob"
+    PRE_FIX: "mappapi-quanzi"
     POINT: "backend"
     DEPLOY_PRE_PATH: "/app/background_code/"
     INVENTORY_PATH: "/etc/ansible/hosts"
