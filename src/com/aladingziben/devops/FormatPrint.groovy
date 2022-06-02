@@ -14,3 +14,6 @@ def PrintMes(value,color){
         println(colors[color])
     }
 }
+
+
+return this
