@@ -16,6 +16,6 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0531/101435_ebff0585_10349853.png "11.png")  
 2.新增项目，只需要在resources/PiplineCfg.yaml内添加对应配置即可
 
-# blog地址
+# blog
 https://blog.51cto.com/u_9237101/5346901
 
